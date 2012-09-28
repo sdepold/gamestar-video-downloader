@@ -24,7 +24,6 @@ var helpers = module.exports = {
         }).join('')
       , path     = "videos/" + filename + ".mp4"
       , cmd      = 'curl -L "' + page + '" > ' + path
-      console.log(path)
 
     fs.exists(__dirname + '/' + path, function(exists) {
       if (!exists) {
@@ -78,6 +77,8 @@ var helpers = module.exports = {
 
       if (!video) {
         console.log('No results for ' + pageUrl)
+      } else if (title.toLowerCase().indexOf('trailer') !== -1) {
+        console.log('Skipping trailer: ' + title)
       } else {
         var path = "http://www.gamestar.de" + video
 
